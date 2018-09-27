@@ -51,3 +51,7 @@ jobs:
         - "*-aws-*"
   - task: main
     file: pipeline/tasks/main.yml
+    params:
+      BBL_AWS_ACCESS_KEY_ID: {{aws_access_key_id}}
+      BBL_AWS_SECRET_ACCESS_KEY: {{aws_secret_access_key}}
+      BBL_AWS_REGION: {{aws_region}}

@@ -10,5 +10,10 @@ image_resource:
 inputs:
   - name: pipeline
 
+params:
+  BBL_AWS_ACCESS_KEY_ID:
+  BBL_AWS_SECRET_ACCESS_KEY:
+  BBL_AWS_REGION:
+
 run:
   path: pipeline/tasks/main

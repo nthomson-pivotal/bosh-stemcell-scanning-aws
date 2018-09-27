@@ -1,0 +1,46 @@
+resource_types:
+- name: pivnet
+  type: docker-image
+  source:
+    repository: pivotalcf/pivnet-resource
+    tag: latest-final
+
+resources:
+- name: tile
+  type: pivnet
+  source:
+    api_token: {{pivnet_token}}
+    product_slug: stemcells
+    product_version: 3586.*
+    sort_by: semver
+
+- name: schedule
+  type: time
+  source:
+    interval: 5m
+    start: "12:00 AM"
+    stop: "11:59 PM"
+    location: America/Los_Angeles
+    days: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+
+jobs:
+- name: regulator
+  plan:
+  - get: schedule
+    trigger: true
+  - get: tile
+    params: { globs: [] }
+
+- name: main
+  public: true
+  plan:
+  - aggregate:
+    - get: pivnet-product
+      resource: tile
+      passed: [regulator]
+      trigger: true
+      params:
+        globs:
+        - "*-aws-*"
+  - task: main
+    file: tasks/main.yml

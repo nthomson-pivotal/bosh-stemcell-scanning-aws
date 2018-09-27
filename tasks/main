@@ -5,6 +5,8 @@ set -e
 export BBL_IAAS=aws
 export BBL_STATE_DIRECTORY=bbl-state
 
+mkdir bbl-state
+
 bbl -n plan
 
 #bbl -n up

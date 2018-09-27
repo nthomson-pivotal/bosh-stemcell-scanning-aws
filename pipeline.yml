@@ -6,6 +6,12 @@ resource_types:
     tag: latest-final
 
 resources:
+- name: pipeline
+  type: git
+  source:
+    uri: https://github.com/nthomson-pivotal/bosh-stemcell-scanning-aws.git
+    branch: master
+
 - name: tile
   type: pivnet
   source:
@@ -35,6 +41,7 @@ jobs:
   public: true
   plan:
   - aggregate:
+    - get: pipeline
     - get: pivnet-product
       resource: tile
       passed: [regulator]
@@ -43,4 +50,4 @@ jobs:
         globs:
         - "*-aws-*"
   - task: main
-    file: tasks/main.yml
+    file: pipeline/tasks/main.yml

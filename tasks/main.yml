@@ -7,5 +7,8 @@ image_resource:
     repository: relintdockerhubpushbot/cf-deployment-concourse-tasks
     tag: v5.22.0
 
+inputs:
+  - name: pipeline
+
 run:
-  path: tasks/main
+  path: pipeline/tasks/main

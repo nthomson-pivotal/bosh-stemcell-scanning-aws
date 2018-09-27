@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+#set -e
 
 export BBL_IAAS=aws
 export BBL_STATE_DIRECTORY=bbl-state
@@ -9,4 +9,10 @@ mkdir bbl-state
 
 bbl -n plan
 
-#bbl -n up
+bbl -n up
+
+eval "$(bbl print-env)"
+
+bosh vms
+
+bbl -n destroy

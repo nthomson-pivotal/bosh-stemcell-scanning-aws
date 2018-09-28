@@ -20,7 +20,7 @@ stemcell_file=$(ls pivnet-product/*.tgz)
 
 bosh upload-stemcell $stemcell_file
 
-bosh deploy zookeeper-release/manifests/zookeeper.yml
+bosh deploy -o pipeline/operations/scale.yml zookeeper-release/manifests/zookeeper.yml
 
 bosh delete-deployment
 

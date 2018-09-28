@@ -9,10 +9,12 @@ mkdir bbl-state
 
 bbl -n plan
 
-bbl -n up
+#bbl -n up
 
-eval "$(bbl print-env)"
+#eval "$(bbl print-env)"
 
-bosh vms
+#bosh vms
 
-bbl -n destroy
+#bbl -n destroy
+
+ls pivnet-product 

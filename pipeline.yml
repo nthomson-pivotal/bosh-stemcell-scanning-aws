@@ -12,6 +12,12 @@ resources:
     uri: https://github.com/nthomson-pivotal/bosh-stemcell-scanning-aws.git
     branch: master
 
+- name: zookeeper-release
+  type: git
+  source:
+    uri: https://github.com/cppforlife/zookeeper-release.git
+    branch: master
+
 - name: tile
   type: pivnet
   source:
@@ -42,6 +48,7 @@ jobs:
   plan:
   - aggregate:
     - get: pipeline
+    - get: zookeeper-release
     - get: pivnet-product
       resource: tile
       passed: [regulator]

@@ -9,6 +9,7 @@ image_resource:
 
 inputs:
   - name: pipeline
+  - name: zookeeper-release
   - name: pivnet-product
 
 params:

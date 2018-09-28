@@ -5,16 +5,24 @@
 export BBL_IAAS=aws
 export BBL_STATE_DIRECTORY=bbl-state
 
+export BOSH_DEPLOYMENT=zookeeper
+export BOSH_NON_INTERACTIVE=true
+
 mkdir bbl-state
 
 bbl -n plan
 
-#bbl -n up
+bbl -n up
 
-#eval "$(bbl print-env)"
+eval "$(bbl print-env)"
 
-#bosh vms
+stemcell_file=$(ls pivnet-product/*.tgz)
 
-#bbl -n destroy
+bosh upload-stemcell $stemcell_file
 
-ls -la pivnet-product
+bosh deploy zookeeper-release/manifests/zookeeper.yml
+
+bosh delete-deployment
+
+bbl -n destroy
+

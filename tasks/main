@@ -17,4 +17,4 @@ bbl -n plan
 
 #bbl -n destroy
 
-ls -la
+ls -la pivnet-product
